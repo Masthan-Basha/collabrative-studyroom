@@ -4,7 +4,7 @@ A real-time collaborative study platform with AI coaching, synchronized whiteboa
 
 ---
 
-## 🚀 Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -19,7 +19,7 @@ A real-time collaborative study platform with AI coaching, synchronized whiteboa
 
 ---
 
-## ✨ Features
+## Features
 
 - **Real-time Whiteboard** — draw, shapes, text, eraser, undo, download. Delta sync via Socket.IO. Full state restored for late joiners.
 - **Group Chat** — typing indicators, message history, avatar colors
@@ -80,41 +80,6 @@ npm run dev
 ```
 
 ---
-
-## 🌐 Deploying to Render + Vercel
-
-### Backend → Render.com
-
-1. Push `backend/` to a GitHub repo
-2. Go to [render.com](https://render.com) → New Web Service
-3. Connect repo, set:
-   - **Build command**: `pip install -r requirements.txt`
-   - **Start command**: `uvicorn main:combined --host 0.0.0.0 --port $PORT`
-4. Add a **PostgreSQL** and **Redis** service from Render dashboard
-5. Set environment variables:
-   - `DATABASE_URL` — from Render PostgreSQL (Internal URL)
-   - `REDIS_URL` — from Render Redis (Internal URL)
-   - `SECRET_KEY` — generate: `python -c "import secrets; print(secrets.token_hex(32))"`
-   - `ANTHROPIC_API_KEY` — your key from console.anthropic.com
-   - `CORS_ORIGINS` — `["https://your-app.vercel.app"]`
-   - `DEBUG` — `false`
-
-> Or use the included `render.yaml` for one-click infrastructure setup.
-
-### Frontend → Vercel
-
-1. Push `frontend/` to GitHub
-2. Import on [vercel.com](https://vercel.com)
-3. Set environment variables:
-   - `VITE_API_URL` = `https://your-render-service.onrender.com/api/v1`
-   - `VITE_SOCKET_URL` = `https://your-render-service.onrender.com`
-4. Deploy — auto-deploys on every push
-
-### Critical: Socket.IO on deployed infra
-The `socket.js` singleton already uses `transports: ['websocket']` to prevent polling fallback. No extra config needed.
-
----
-
 ## 📁 Project Structure
 
 ```
@@ -159,7 +124,7 @@ collaborative-study-room/
 
 ---
 
-## 🔑 Environment Variables Reference
+## Environment Variables Reference
 
 ### Backend
 | Variable | Description |
@@ -180,20 +145,17 @@ collaborative-study-room/
 
 ---
 
-## 🏆 New Features (Beyond Standard Spec)
+## New Features (Beyond Standard Spec)
 
 | Feature | Description |
 |---|---|
-| 🤖 AI Study Coach | Claude-powered assistant with explain/quiz/summarize modes |
-| ✨ AI Card Generation | Generate 5 flashcards from any topic with one click |
-| 📝 Collaborative Notes | Shared markdown editor, throttled real-time sync |
-| 🎵 Ambient Sounds | Lo-Fi/Rain/Café/Forest — room-synced |
-| 📊 Focus Scores | Live activity-based score per member in sidebar |
-| 🏅 XP System | Earn XP from quiz scores, tracked across sessions |
-| 📈 Analytics Dashboard | Personal study time, pomodoros, focus score stats |
-| 🎮 Room Roles | Owner badge, per-user avatar colors |
-| 🎉 Confetti | Fires on quiz scores ≥ 80% |
+| AI Study Coach | Claude-powered assistant with explain/quiz/summarize modes |
+| AI Card Generation | Generate 5 flashcards from any topic with one click |
+| Collaborative Notes | Shared markdown editor, throttled real-time sync |
+| Ambient Sounds | Lo-Fi/Rain/Café/Forest — room-synced |
+| Focus Scores | Live activity-based score per member in sidebar |
+| XP System | Earn XP from quiz scores, tracked across sessions |
+| Analytics Dashboard | Personal study time, pomodoros, focus score stats |
+| Room Roles | Owner badge, per-user avatar colors |
+| Confetti | Fires on quiz scores ≥ 80% |
 
----
-
-Built for Rockverse Hackathon 2026 — Good luck! 🚀
