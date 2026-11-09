@@ -1,4 +1,4 @@
-# 🎓 Collaborative Study Room
+# Collaborative Study Room
 
 A real-time collaborative study platform with AI coaching, synchronized whiteboard, Pomodoro timer, flashcards, quiz mode, shared notes, and ambient sounds.
 
