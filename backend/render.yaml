@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: study-room-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:combined --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: study-room-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: study-room-redis
+          type: redis
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_EXPIRE_MINUTES
+        value: "30"
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: DEBUG
+        value: "false"
+      - key: CORS_ORIGINS
+        sync: false
+
+databases:
+  - name: study-room-db
+    databaseName: studyroom
+    user: studyroom
+    plan: free
+
+  - name: study-room-redis
+    type: redis
+    plan: free
+    ipAllowList: []
